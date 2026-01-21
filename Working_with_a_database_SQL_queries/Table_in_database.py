@@ -26,9 +26,14 @@ with psycopg2.connect(dbname=PGDATABASE, user=PGUSER, password=PGPASSWORD, host=
                     REFERENCES user_1112121(id)
                     ON DELETE CASCADE
             );
-            CREATE TABLE IF NOT EXISTS settings(
+            CREATE TABLE IF NOT EXISTS settings_1(
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER REFERENCES user_1112121(id), 
                     language VARCHAR(100) NOT NULL,
-                    users_settings VARCHAR(100) NOT NULL
+                    show_profile BOOLEAN DEFAULT true,
+                    theme VARCHAR(20) DEFAULT 'light',
+                    email_notifications BOOLEAN DEFAULT true                  
+                    
                     
             )
         """
